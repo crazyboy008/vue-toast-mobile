@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>vue-alert-mobile</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0, maximum-scale=1.2,user-scalable=0">
+  <meta name="format-detection" content="telephone=no" />
+	<script type="text/javascript" src="../node_modules/vue/dist/vue.js"></script>
+	<script type="text/javascript" src="../dist/vue-toast-mobile.js"></script>
+	<style type="text/css">
+		body,div,section,p{
+			margin: 0;
+      padding: 0;
+      border: 0;
+      font-size: 100%;
+      font: inherit;
+      vertical-align: baseline;
+		}
+    .button {
+      margin: auto;
+      width: 200px;
+      height: 50px;
+      line-height: 50px;
+      text-align: center;
+      margin-top: 100px;
+      background: red;
+      color: #fff;
+    }
+	</style>
+</head>
+<body>
+
+<div id="app">
+  <div class="button" @click="onClickToast">点击显示toast</div>
+  <div class="button" @click="onClickShowLoading">点击显示loading</div>
+</div>
+<script type="text/javascript">
+	new Vue({
+		el:"#app",
+		methods:{
+      onClickToast: function(value) {
+        this.$toast.show({
+          content: '提示',
+          onShow() {
+            console.log(value);
+          },
+          onHide() {
+            console.log(value);
+          }
+        })
+      },
+      onClickShowLoading: function() {
+        var _this = this
+        this.$toast.show({
+          type: 'loading',
+          mask: true,
+          time: 9000,
+          content: '正在加载.....'
+        })
+        setTimeout(function () {
+          _this.$toast.hide()
+        }, 3000)
+      }
+		}
+	})
+</script>
+</body>
+</html>
